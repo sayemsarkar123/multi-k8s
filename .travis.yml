@@ -20,10 +20,8 @@ before_install:
   - sudo ./configure --enable-optimizations
   # - sudo make -j $(nproc)
   - sudo make altinstall
-  - echo `which python`
-  - echo `$(pwd)`
-  - cd ../..
-  - echo `$(pwd)`
+  - echo `python3 --version`
+  - cd /home/travis/build/sayemsarkar123/multi-k8s
   - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
   - curl https://sdk.cloud.google.com | bash > /dev/null
   - source $HOME/google-cloud-sdk/path.bash.inc
