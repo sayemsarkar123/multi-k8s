@@ -8,14 +8,10 @@ env:
     - GIT_SHA=$(git rev-parse HEAD)
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 
-addons:
-  apt:
-    sources:
-      - deadsnakes
-    packages:
-      - python3.8
-
 before_install:
+  - sudo apt install software-properties-common
+  - sudo add-apt-repository ppa:deadsnakes/ppa
+  - sudo apt install python3.9
   - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
   - curl https://sdk.cloud.google.com | bash > /dev/null
   - source $HOME/google-cloud-sdk/path.bash.inc
