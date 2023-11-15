@@ -5,13 +5,18 @@ services:
 
 env:
   global:
+    - VERSION=3.10.12
     - GIT_SHA=$(git rev-parse HEAD)
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 
 before_install:
-  - sudo apt install software-properties-common -y
-  - sudo add-apt-repository ppa:deadsnakes/ppa -y
-  - sudo apt install python3.10
+  - sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev
+  - wget https://www.python.org/ftp/python/$VERSION/Python-$VERSION.tgz
+  - tar -xf Python-$VERSION.tgz
+  - cd Python-$VERSION/
+  - ./configure --enable-optimizations
+  - make -j $(nproc)
+  - sudo make altinstall
   - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
   - curl https://sdk.cloud.google.com | bash > /dev/null
   - source $HOME/google-cloud-sdk/path.bash.inc
