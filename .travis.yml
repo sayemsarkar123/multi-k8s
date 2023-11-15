@@ -10,6 +10,7 @@ env:
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1
 
 before_install:
+  - echo `$(pwd)`
   - sudo apt-get install build-essential checkinstall
   - sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev libffi-dev zlib1g-dev
   - cd /opt
@@ -17,10 +18,12 @@ before_install:
   - sudo tar xzf Python-3.8.12.tgz
   - cd Python-3.8.12
   - sudo ./configure --enable-optimizations
-  - sudo make -j $(nproc)
+  # - sudo make -j $(nproc)
   - sudo make altinstall
   - echo `which python`
+  - echo `$(pwd)`
   - cd ../..
+  - echo `$(pwd)`
   - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d
   - curl https://sdk.cloud.google.com | bash > /dev/null
   - source $HOME/google-cloud-sdk/path.bash.inc
