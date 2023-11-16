@@ -23,9 +23,9 @@ before_install:
   - source $HOME/google-cloud-sdk/path.bash.inc
   - gcloud auth activate-service-account --key-file=service-account.json
   - gcloud components install kubectl
-  - gcloud config set project PROJECT_ID
-  - gcloud config set compute/zone us-east1-b
-  - gcloud container clusters get-credentials sample-cluster
+  - gcloud config set project multi-k8s-405309
+  - gcloud config set compute/zone asia-south1-a
+  - gcloud container clusters get-credentials multi-cluster
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker build -t sayemsarkar123/multi-client -f ./client/Dockerfile.dev ./client
 
