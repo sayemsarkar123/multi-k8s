@@ -5,10 +5,17 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/use-regex: 'true'
     nginx.ingress.kubernetes.io/rewrite-target: /$1
+    cert-manager.io/issuer: 'letsencrypt-prod'
+    nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - k8s.hedigital.net
+      secretName: k8s-hedigital-net-tls
   rules:
-    - http:
+    - host: k8s.hedigital.net
+      http:
         paths:
           - path: /(.*)
             pathType: ImplementationSpecific
