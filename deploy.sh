@@ -1,6 +1,6 @@
-docker build -t sayemsarkar123/multi-client:latest sayemsarkar123/multi-client:$GIT_SHA ./client
-docker build -t sayemsarkar123/multi-server:latest sayemsarkar123/multi-server:$GIT_SHA ./server
-docker build -t sayemsarkar123/multi-worker:latest sayemsarkar123/multi-worker:$GIT_SHA ./worker
+docker build -t sayemsarkar123/multi-client:latest -t sayemsarkar123/multi-client:$GIT_SHA ./client
+docker build -t sayemsarkar123/multi-server:latest -t sayemsarkar123/multi-server:$GIT_SHA ./server
+docker build -t sayemsarkar123/multi-worker:latest -t sayemsarkar123/multi-worker:$GIT_SHA ./worker
 
 docker push sayemsarkar123/multi-client:latest
 docker push sayemsarkar123/multi-server:latest
