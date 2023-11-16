@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: k8s-hedigital-net
+spec:
+  secretName: k8s-hedigital-net-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: k8s.hedigital.net
+  dnsNames:
+    - k8s.hedigital.net
